@@ -18,7 +18,14 @@ class _ShowMapState extends State<ShowMap> {
   double latitude = 0;
   double longitude = 0;
 
-  void getCurrentLocation() async {
+  @override
+  void setState(fn) {
+    if (mounted) {
+      super.setState(fn);
+    }
+  }
+
+  Future<void> getCurrentLocation() async {
     var position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.best);
     var lat = position.latitude;
@@ -29,8 +36,15 @@ class _ShowMapState extends State<ShowMap> {
       longitude = double.parse('$long');
     });
 
-    print(latitude);
-    print(longitude);
+    await mapController.animateCamera(
+      CameraUpdate.newCameraPosition(
+        CameraPosition(
+          target: LatLng(latitude, longitude),
+          zoom: 11,
+        ),
+      ),
+    );
+    return;
   }
 
   @override
@@ -44,6 +58,7 @@ class _ShowMapState extends State<ShowMap> {
               target: LatLng(latitude, longitude),
               zoom: 11,
             ),
+            myLocationEnabled: true,
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
