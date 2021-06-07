@@ -13,9 +13,11 @@ class _ShowMapState extends State<ShowMap> {
     mapController = controller;
   }
 
+  Set<Marker> markers = {};
+
   var locationMessage = ' ';
-  double latitude = 0;
-  double longitude = 0;
+  double latitude = 20.5937;
+  double longitude = 78.9629;
 
   @override
   void setState(fn) {
@@ -39,7 +41,7 @@ class _ShowMapState extends State<ShowMap> {
       CameraUpdate.newCameraPosition(
         CameraPosition(
           target: LatLng(latitude, longitude),
-          zoom: 11,
+          zoom: 18,
         ),
       ),
     );
@@ -57,7 +59,24 @@ class _ShowMapState extends State<ShowMap> {
               target: LatLng(latitude, longitude),
               zoom: 11,
             ),
+            markers: <Marker>{
+              Marker(
+                  onTap: () {
+                    print('Tapped');
+                  },
+                  draggable: true,
+                  markerId: MarkerId('Marker'),
+                  position: LatLng(latitude, longitude),
+                  onDragEnd: ((newPosition) {
+                    print(newPosition.latitude);
+                    print(newPosition.longitude);
+                  }))
+            },
             myLocationEnabled: true,
+            myLocationButtonEnabled: false,
+            mapToolbarEnabled: true,
+            mapType: MapType.normal,
+            buildingsEnabled: true,
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),

@@ -17,8 +17,35 @@ class _AddLocationState extends State<AddLocation> {
       ),
       body: Stack(
         children: <Widget>[
-          TextFormField(),
           ShowMap(),
+          Padding(
+            padding: const EdgeInsets.only(top: 10.0),
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                color: Color(0xFFFFFFFF),
+              ),
+              child: Row(
+                children: [
+                  TextFormField(
+                      style: TextStyle(color: Colors.black),
+                      decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                          labelText: 'Search',
+                          labelStyle: TextStyle(
+                            color: Colors.black,
+                          ),
+                          icon: Icon(
+                            Icons.search,
+                            color: Colors.black,
+                          ),
+                          border: InputBorder.none)),
+                ],
+              ),
+            ),
+          )
         ],
       ),
     );
