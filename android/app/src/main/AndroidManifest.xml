@@ -8,10 +8,11 @@
     
    <application
         android:label="new_app"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:usesCleartextTraffic="true">
 
         <meta-data android:name="com.google.android.geo.API_KEY"
-               android:value="AIzaSyA_FJMaioHXKUpJdUYAtq43tAIIPHgDiBk"/>
+               android:value="AIzaSyCqpZ2YCvmsg4ajimWInuDR7SejE1_GD6I"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
